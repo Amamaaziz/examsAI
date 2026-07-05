@@ -1,1673 +1,1905 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Examis AI — Engineering the Future of Examination Papers</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
-<!-- Tailwind CSS CDN for the Footer styling -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          'brand-primary': '#2563eb',
-        }
-      }
-    }
-  }
-</script>
-<style>
-  :root {
-    /* --- Light Mode Colors --- */
-    --bg-body: #ffffff;
-    --bg-card: #ffffff;
-    --bg-nav: rgba(255, 255, 255, .85);
-    --border-color: #e2e8f0;
-    --ink: #0f172a;
-    --ink-2: #1e293b;
-    --gray-600: #475569;
-    --gray-500: #64748b;
-    --gray-100: #f1f5f9;
-    --gray-50: #f8fafc;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examis AI — Engineering the Future of Examination Papers</title>
     
-    /* --- Fixed Accents --- */
-    --blue: #2563eb;
-    --blue-light: #3b82f6;
-    --blue-50: #eff6ff;
-    --purple: #8b5cf6;
-    --pink: #ec4899;
-    --green: #10b981;
-    --amber: #f59e0b;
-    --indigo: #6366f1;
-    --navy: #0b1220;
-    --navy-2: #111a2e;
-    --radius: 16px;
-  }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* --- Light Mode Colors --- */
+            --bg-body: #ffffff;
+            --bg-card: #ffffff;
+            --bg-nav: rgba(255, 255, 255, .85);
+            --border-color: #e2e8f0;
+            --ink: #0f172a;
+            --ink-2: #1e293b;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
+            
+            /* --- Fixed Accents --- */
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --blue-50: #eff6ff;
+            --purple: #8b5cf6;
+            --pink: #ec4899;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --indigo: #6366f1;
+            --navy: #0b1220;
+            --navy-2: #111a2e;
+            --radius: 16px;
+        }
 
-  /* --- Dark Mode Variables Overrides --- */
-  [data-theme="dark"] {
-    --bg-body: #0b1220;
-    --bg-card: #111a2e;
-    --bg-nav: rgba(11, 18, 32, 0.85);
-    --border-color: #1e293b;
-    --ink: #f8fafc;
-    --ink-2: #e2e8f0;
-    --gray-600: #cbd5e1;
-    --gray-500: #94a3b8;
-    --gray-100: #1e293b;
-    --gray-50: #0f172a;
-    --blue-50: #1e293b;
-  }
+        /* --- Dark Mode Variables Overrides --- */
+        [data-theme="dark"] {
+            --bg-body: #0b1220;
+            --bg-card: #111a2e;
+            --bg-nav: rgba(11, 18, 32, 0.85);
+            --border-color: #1e293b;
+            --ink: #f8fafc;
+            --ink-2: #e2e8f0;
+            --gray-600: #cbd5e1;
+            --gray-500: #94a3b8;
+            --gray-100: #1e293b;
+            --gray-50: #0f172a;
+            --blue-50: #1e293b;
+        }
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  
-  body {
-    margin: 0;
-    font-family: 'Inter', system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--bg-body);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--ink);
+            background: var(--bg-body);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
 
-  h1, h2, h3, h4, h5, h6, .brand { font-family: 'Lexend', sans-serif; color: var(--ink); }
-  a { text-decoration: none; color: inherit; }
-  img { max-width: 100%; display: block; }
-  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+        h1, h2, h3, h4, h5, h6, .brand { font-family: 'Lexend', sans-serif; color: var(--ink); }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-  /* ---------- NAV ---------- */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg-nav);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--ink);
-    z-index: 110;
-  }
-  .brand-logo-img {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-    transition: transform 0.2s ease;
-  }
-  .brand:hover .brand-logo-img {
-    transform: scale(1.05) rotate(2deg);
-  }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--gray-600);
-    transition: color .2s ease;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--blue);
-    transition: width 0.2s ease;
-  }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-links a:hover::after { width: 100%; }
-  
-  .nav-actions-container { display: flex; align-items: center; gap: 14px; }
-  .nav-right { display: flex; align-items: center; gap: 22px; }
-  
-  /* Theme Toggle Button */
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--gray-50);
-    border: 1px solid var(--border-color);
-    color: var(--ink);
-    transition: all 0.2s ease;
-    z-index: 110;
-  }
-  .theme-toggle:hover {
-    background: var(--gray-100);
-    transform: translateY(-1px);
-  }
-  .theme-toggle .sun-icon { display: none; }
-  .theme-toggle .moon-icon { display: block; }
-  [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
-  [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+        /* ---------- NAV ---------- */
+        .nav {
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, .06);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--ink);
+            z-index: 110;
+        }
+        .brand-logo-img {
+            width: 36px;
+            height: 36px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            transition: transform 0.2s ease;
+        }
+        .brand:hover .brand-logo-img {
+            transform: scale(1.05) rotate(2deg);
+        }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: color .2s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            transition: width 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .nav-actions-container { display: flex; align-items: center; gap: 14px; }
+        .nav-right { display: flex; align-items: center; gap: 22px; }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--gray-50);
+            border: 1px solid var(--border-color);
+            color: var(--ink);
+            transition: all 0.2s ease;
+            z-index: 110;
+        }
+        .theme-toggle:hover {
+            background: var(--gray-100);
+            transform: translateY(-1px);
+        }
+        .theme-toggle .sun-icon { display: none; }
+        .theme-toggle .moon-icon { display: block; }
+        [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+        [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 11px 22px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: transform .2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .2s ease, background .2s ease;
-  }
-  .btn-primary {
-    background: var(--blue);
-    color: #fff;
-    box-shadow: 0 6px 16px rgba(37, 99, 235, .2);
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, .35);
-  }
-  .btn-outline {
-    background: var(--bg-card);
-    color: var(--ink);
-    border: 1.5px solid var(--border-color);
-  }
-  .btn-outline:hover { border-color: var(--gray-500); background: var(--gray-50); }
-  .btn-green {
-    background: var(--green);
-    color: #fff;
-    box-shadow: 0 6px 16px rgba(16, 185, 129, .2);
-  }
-  .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, .35); }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform .2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .2s ease, background .2s ease;
+        }
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, .2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, .35);
+        }
+        .btn-outline {
+            background: var(--bg-card);
+            color: var(--ink);
+            border: 1.5px solid var(--border-color);
+        }
+        .btn-outline:hover { border-color: var(--gray-500); background: var(--gray-50); }
+        .btn-green {
+            background: var(--green);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, .2);
+        }
+        .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(16, 185, 129, .35); }
 
-  /* Hamburger Button */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    z-index: 110;
-    cursor: pointer;
-  }
-  .menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--ink);
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+        /* Hamburger Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            z-index: 110;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--ink);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
 
-  /* Mobile Drawer Menu */
-  .mobile-drawer {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--bg-card);
-    z-index: 105;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    padding: 100px 32px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .mobile-drawer.open { right: 0; }
-  .mobile-drawer a {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--gray-600);
-    transition: color 0.2s;
-  }
-  .mobile-drawer a:hover { color: var(--blue); }
-  .drawer-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.3);
-    backdrop-filter: blur(4px);
-    z-index: 104;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+        /* Mobile Drawer Menu */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--bg-card);
+            z-index: 105;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            padding: 100px 32px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-drawer.open { right: 0; }
+        .mobile-drawer a {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-600);
+            transition: color 0.2s;
+        }
+        .mobile-drawer a:hover { color: var(--blue); }
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 104;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .drawer-overlay.open { opacity: 1; pointer-events: auto; }
 
-  .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .menu-toggle.open span:nth-child(2) { opacity: 0; }
-  .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .08), transparent 40%),
-      radial-gradient(circle at 85% 60%, rgba(139, 92, 246, .08), transparent 45%),
-      var(--bg-body);
-    padding: clamp(48px, 8vw, 96px) 0 60px;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(32px, 5vw, 64px);
-    align-items: center;
-  }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--blue-50);
-    color: var(--blue);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 7px 16px;
-    border-radius: 999px;
-    margin-bottom: 22px;
-    border: 1px solid rgba(37, 99, 235, 0.1);
-  }
-  .hero h1 {
-    font-size: clamp(34px, 5vw, 52px);
-    line-height: 1.12;
-    font-weight: 800;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    margin: 0 0 20px;
-  }
-  .hero h1 .accent {
-    background: linear-gradient(90deg, var(--blue-light), var(--purple), var(--blue-light));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: textShine 4s linear infinite;
-  }
-  @keyframes textShine {
-    to { background-position: 200% center; }
-  }
-  .hero p.lead {
-    font-size: clamp(15px, 2.5vw, 17px);
-    color: var(--gray-600);
-    max-width: 480px;
-    line-height: 1.65;
-    margin-bottom: 30px;
-  }
-  .hero-ctas { display: flex; gap: 14px; margin-bottom: 44px; }
-  .stat-row { display: flex; gap: clamp(24px, 4vw, 46px); }
-  .stat-row .stat b {
-    display: block;
-    font-size: clamp(22px, 3vw, 28px);
-    font-weight: 800;
-    color: var(--ink);
-  }
-  .stat-row .stat span { font-size: 13px; color: var(--gray-500); }
+        /* ---------- HERO ---------- */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, .08), transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(139, 92, 246, .08), transparent 45%),
+                var(--bg-body);
+            padding: clamp(48px, 8vw, 96px) 0 60px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: clamp(32px, 5vw, 64px);
+            align-items: center;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-50);
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
+        }
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.12;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+            margin: 0 0 20px;
+        }
+        .hero h1 .accent {
+            background: linear-gradient(90deg, var(--blue-light), var(--purple), var(--blue-light));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textShine 4s linear infinite;
+        }
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+        .hero p.lead {
+            font-size: clamp(15px, 2.5vw, 17px);
+            color: var(--gray-600);
+            max-width: 480px;
+            line-height: 1.65;
+            margin-bottom: 30px;
+        }
+        .hero-ctas { display: flex; gap: 14px; margin-bottom: 44px; }
+        .stat-row { display: flex; gap: clamp(24px, 4vw, 46px); }
+        .stat-row .stat b {
+            display: block;
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 800;
+            color: var(--ink);
+        }
+        .stat-row .stat span { font-size: 13px; color: var(--gray-500); }
 
-  .hero-card {
-    position: relative;
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 26px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, .06);
-  }
-  .hero-card-badge {
-    position: absolute;
-    top: -18px;
-    right: -18px;
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--amber), #fbbf24);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    box-shadow: 0 8px 20px rgba(245, 158, 11, .35);
-  }
-  .dropzone {
-    border: 2px dashed #bfdbfe;
-    background: var(--blue-50);
-    border-radius: 14px;
-    padding: 30px 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    transition: background 0.2s, border-color 0.2s;
-  }
-  [data-theme="dark"] .dropzone { border-color: #3b82f6; }
-  .dropzone .ic {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    margin: 0 auto 12px;
-  }
-  .dropzone .title { font-weight: 600; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
-  .dropzone .sub { font-size: 13px; color: var(--gray-500); }
-  .progress-item { margin-bottom: 12px; }
-  .progress-item .row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
-  .progress-track { height: 7px; background: var(--gray-100); border-radius: 999px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue-light), var(--indigo)); }
-  
-  .gen-result {
-    margin-top: 16px;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    border-radius: 12px;
-    padding: 14px 16px;
-    transition: opacity 0.3s ease;
-  }
-  [data-theme="dark"] .gen-result { background: #064e3b; border-color: #047857; }
-  .gen-result .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .gen-result .label { color: #059669; font-weight: 600; font-size: 14px; }
-  [data-theme="dark"] .gen-result .label { color: #34d399; }
-  .pill-analyze { background: var(--green); color: #fff; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 8px; }
-  .gen-result .q { font-size: 14px; color: var(--ink-2); }
+        .hero-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 26px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, .06);
+        }
+        .hero-card-badge {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--amber), #fbbf24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, .35);
+        }
+        .dropzone {
+            border: 2px dashed #bfdbfe;
+            background: var(--blue-50);
+            border-radius: 14px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        [data-theme="dark"] .dropzone { border-color: #3b82f6; }
+        .dropzone .ic {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            margin: 0 auto 12px;
+        }
+        .dropzone .title { font-weight: 600; font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+        .dropzone .sub { font-size: 13px; color: var(--gray-500); }
+        .progress-item { margin-bottom: 12px; }
+        .progress-item .row { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray-600); margin-bottom: 6px; }
+        .progress-track { height: 7px; background: var(--gray-100); border-radius: 999px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue-light), var(--indigo)); transition: width 0.6s ease; }
+        
+        .gen-result {
+            margin-top: 16px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 12px;
+            padding: 14px 16px;
+            transition: opacity 0.4s ease;
+        }
+        [data-theme="dark"] .gen-result { background: #064e3b; border-color: #047857; }
+        .gen-result .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .gen-result .label { color: #059669; font-weight: 600; font-size: 14px; }
+        [data-theme="dark"] .gen-result .label { color: #34d399; }
+        .pill-analyze { background: var(--green); color: #fff; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 8px; }
+        .gen-result .q { font-size: 14px; color: var(--ink-2); }
 
-  /* ---------- STATS STRIP ---------- */
-  .stats-strip { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: var(--gray-50); }
-  .stats-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 44px 24px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    text-align: center;
-  }
-  .stat-box .icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    margin: 0 auto 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .stat-box b { display: block; font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: var(--ink); }
-  .stat-box span { font-size: 14px; color: var(--gray-500); }
+        .term-tip {
+            position: relative;
+            border-bottom: 1px dashed var(--gray-500);
+            cursor: help;
+        }
+        .term-tip .tip-box {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            background: var(--navy-2);
+            color: #f8fafc;
+            font-size: 12.5px;
+            font-weight: 500;
+            line-height: 1.5;
+            padding: 10px 14px;
+            border-radius: 10px;
+            width: 220px;
+            text-align: left;
+            box-shadow: 0 10px 24px rgba(0,0,0,.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 20;
+        }
+        .term-tip .tip-box::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--navy-2);
+        }
+        .term-tip:hover .tip-box {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
 
-  /* ---------- SECTION HEADERS ---------- */
-  .section { padding: clamp(48px, 8vw, 96px) 0; }
-  .section-head { text-align: center; max-width: 640px; margin: 0 auto 54px; }
-  .section-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 800; color: var(--ink); margin: 0 0 14px; letter-spacing: -0.02em; }
-  .section-head p { font-size: 16px; color: var(--gray-600); line-height: 1.6; }
-  .section-dark { background: linear-gradient(180deg, var(--navy), var(--navy-2)); color: #fff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-  .section-dark .section-head h2 { color: #fff; }
-  .section-dark .section-head p { color: #94a3b8; }
+        /* ---------- STATS STRIP ---------- */
+        .stats-strip { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: var(--gray-50); }
+        .stats-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 44px 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-box .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stat-box b { display: block; font-size: clamp(24px, 3vw, 32px); font-weight: 800; color: var(--ink); }
+        .stat-box span { font-size: 14px; color: var(--gray-500); }
 
-  /* ---------- DEMO SECTION ---------- */
-  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-  .demo-card {
-    background: var(--blue-50);
-    border-radius: 20px;
-    padding: 26px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .demo-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-  .demo-card-head h3 { font-size: 19px; font-weight: 700; margin: 0; }
-  .sparkle { color: var(--blue); }
-  .field {
-    background: var(--bg-card);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    border: 1px solid var(--border-color);
-  }
-  .field .k { font-size: 12px; color: var(--gray-500); margin-bottom: 3px; }
-  .field .v { font-size: 15px; font-weight: 600; color: var(--ink); }
-  
-  .generate-btn {
-    width: 100%;
-    background: var(--blue);
-    color: #fff;
-    padding: 14px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 6px 16px rgba(37, 99, 235, .25);
-    transition: transform .2s ease, background 0.2s;
-  }
-  .generate-btn:hover { transform: translateY(-1px); background: var(--blue-light); }
-  
-  .question-card {
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 26px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 40px rgba(15, 23, 42, .04);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .ai-loading-active {
-    opacity: 0.5;
-    pointer-events: none;
-    transform: scale(0.99);
-  }
+        /* ---------- SECTION HEADERS ---------- */
+        .section { padding: clamp(48px, 8vw, 96px) 0; }
+        .section-head { text-align: center; max-width: 640px; margin: 0 auto 54px; }
+        .section-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 800; color: var(--ink); margin: 0 0 14px; letter-spacing: -0.02em; }
+        .section-head p { font-size: 16px; color: var(--gray-600); line-height: 1.6; }
+        .section-dark { background: linear-gradient(180deg, var(--navy), var(--navy-2)); color: #fff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .section-dark .section-head h2 { color: #fff; }
+        .section-dark .section-head p { color: #94a3b8; }
 
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+        /* ---------- DEMO SECTION ---------- */
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .demo-card {
+            background: var(--blue-50);
+            border-radius: 20px;
+            padding: 26px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .demo-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+        .demo-card-head h3 { font-size: 19px; font-weight: 700; margin: 0; }
+        .sparkle { color: var(--blue); }
+        .field {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .field .k { font-size: 12px; color: var(--gray-500); margin-bottom: 3px; }
+        .field .v { font-size: 15px; font-weight: 600; color: var(--ink); }
+        
+        .generate-btn {
+            width: 100%;
+            background: var(--blue);
+            color: #fff;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, .25);
+            transition: transform .2s ease, background 0.2s;
+        }
+        .generate-btn:hover { transform: translateY(-1px); background: var(--blue-light); }
 
-  .q-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-  .tag { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 8px; display: inline-block; }
-  .tag-mcq { background: #fdf2f8; color: #db2777; }
-  .tag-remember { background: #f3e8ff; color: #9333ea; }
-  .tag-clo { background: #dcfce7; color: #16a34a; }
-  .tag-easy { background: #e0f2fe; color: #0369a1; }
-  .marks { font-size: 26px; font-weight: 800; color: var(--ink); text-align: right; }
-  .marks span { display: block; font-size: 12px; font-weight: 500; color: var(--gray-500); }
-  .tags-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
-  .q-text { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.5; margin-bottom: 18px; }
-  
-  .option {
-    padding: 13px 16px;
-    border: 1.5px solid var(--border-color);
-    border-radius: 12px;
-    margin-bottom: 10px;
-    font-size: 15px;
-    color: var(--ink-2);
-    transition: border-color .2s ease, background .2s ease, transform 0.2s ease;
-  }
-  .option:hover { border-color: var(--blue-light); background: var(--gray-50); transform: translateX(4px); }
-  
-  .q-foot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: 14px;
-    margin-top: 6px;
-    font-size: 13px;
-  }
-  .verified { color: var(--green); font-weight: 600; display: flex; align-items: center; gap: 6px; }
-  .q-num { color: var(--gray-500); }
+        .question-card-wrapper {
+            perspective: 1200px;
+        }
+        .question-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 26px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, .04);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            backface-visibility: hidden;
+        }
+        .question-card.flip-out {
+            transform: rotateY(90deg);
+            opacity: 0;
+        }
+        .question-card.flip-in {
+            transform: rotateY(0deg);
+            opacity: 1;
+        }
+        
+        .ai-loading-active {
+            opacity: 0.5;
+            pointer-events: none;
+            transform: scale(0.99);
+        }
 
-  /* ---------- INTERACTIVE LEARNING LEVELS (BLOOM'S TAXONOMY) ---------- */
-  .bloom-layout {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
-    align-items: center;
-    margin-top: 40px;
-  }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-  .bloom-orbit-container {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    height: 420px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+        .q-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+        .tag { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 8px; display: inline-block; }
+        .tag-mcq { background: #fdf2f8; color: #db2777; }
+        .tag-remember { background: #f3e8ff; color: #9333ea; }
+        .tag-clo { background: #dcfce7; color: #16a34a; }
+        .tag-easy { background: #e0f2fe; color: #0369a1; }
+        .marks { font-size: 26px; font-weight: 800; color: var(--ink); text-align: right; }
+        .marks span { display: block; font-size: 12px; font-weight: 500; color: var(--gray-500); }
+        .tags-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .q-text { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.5; margin-bottom: 18px; }
+        
+        .option {
+            padding: 13px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: var(--ink-2);
+            transition: border-color .2s ease, background .2s ease, transform 0.2s ease;
+        }
+        .option:hover { border-color: var(--blue-light); background: var(--gray-50); transform: translateX(4px); }
+        
+        .q-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 14px;
+            margin-top: 6px;
+            font-size: 13px;
+        }
+        .verified { color: var(--green); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .q-num { color: var(--gray-500); }
 
-  .bloom-node {
-    position: absolute;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-    user-select: none;
-  }
+        /* ---------- INTERACTIVE LEARNING LEVELS (BLOOM'S TAXONOMY) ---------- */
+        .bloom-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .bloom-orbit-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            height: 420px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bloom-node {
+            position: absolute;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            user-select: none;
+        }
+        .node-center { 
+            width: 104px; 
+            height: 104px; 
+            background: #5046e5; 
+            font-size: 14px; 
+            transform: rotate(-10deg);
+            top: 50%;
+            left: 48%;
+            margin-top: -30px;
+            margin-left: -52px;
+            z-index: 5;
+        }
+        .node-center.active { transform: scale(1.1) rotate(-10deg); }
+        .node-remember { top: 15%; left: 50%; margin-left: -48px; background: #ea4335; }
+        .node-understand { top: 36%; right: 2%; background: #f67a1e; }
+        .node-apply { bottom: 16%; right: 2%; background: #e9b107; }
+        .node-analyze { bottom: 2%; left: 50%; margin-left: -48px; background: #1cb85c; }
+        .node-evaluate { bottom: 16%; left: 2%; background: #337ff3; }
+        .node-create { top: 36%; left: 2%; background: #a251f5; }
 
-  .node-center { 
-    width: 104px; 
-    height: 104px; 
-    background: #5046e5; 
-    font-size: 14px; 
-    transform: rotate(-10deg);
-    top: 50%;
-    left: 48%;
-    margin-top: -30px;
-    margin-left: -52px;
-    z-index: 5;
-  }
-  .node-center.active { transform: scale(1.1) rotate(-10deg); }
+        @media (max-width: 480px) {
+            .bloom-orbit-container {
+                max-width: 340px;
+                height: 340px;
+                transform: scale(0.85);
+            }
+        }
 
-  .node-remember { top: 15%; left: 50%; margin-left: -48px; background: #ea4335; }
-  .node-understand { top: 36%; right: 2%; background: #f67a1e; }
-  .node-apply { bottom: 16%; right: 2%; background: #e9b107; }
-  .node-analyze { bottom: 2%; left: 50%; margin-left: -48px; background: #1cb85c; }
-  .node-evaluate { bottom: 16%; left: 2%; background: #337ff3; }
-  .node-create { top: 36%; left: 2%; background: #a251f5; }
+        .bloom-detail-card {
+            background: #f0f4ff; 
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(99, 102, 241, 0.08);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.04);
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+        }
+        [data-theme="dark"] .bloom-detail-card {
+            background: #1e293b;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+        .bloom-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .bloom-color-indicator {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ef4444;
+            transition: background 0.3s ease;
+        }
+        .bloom-detail-header h3 { font-size: 28px; font-weight: 700; margin: 0; }
+        .bloom-subtitle { font-size: 16px; color: var(--gray-600); margin-bottom: 24px; }
+        .bloom-verbs-section h4 { font-size: 15px; font-weight: 700; margin: 0 0 12px; color: var(--ink); }
+        .bloom-verbs-list { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+        .bloom-verb-tag {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+        .bloom-sample-box {
+            background: var(--bg-body);
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid var(--border-color);
+            margin-top: auto;
+        }
+        .bloom-sample-label { font-size: 12px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .bloom-sample-text { font-size: 15px; font-style: italic; color: var(--ink-2); line-height: 1.6; }
 
-  @media (max-width: 480px) {
-    .bloom-orbit-container {
-      max-width: 340px;
-      height: 340px;
-      transform: scale(0.85);
-    }
-  }
+        @media(max-width: 960px) {
+            .bloom-layout { grid-template-columns: 1fr; gap: 32px; }
+            .bloom-orbit-container { height: 380px; transform: scale(0.9); }
+        }
 
-  .bloom-detail-card {
-    background: #f0f4ff; 
-    border-radius: 24px;
-    padding: 40px;
-    border: 1px solid rgba(99, 102, 241, 0.08);
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.04);
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-  }
-  [data-theme="dark"] .bloom-detail-card {
-    background: #1e293b;
-    border-color: rgba(255, 255, 255, 0.05);
-  }
+        /* ---------- FEATURES GRID ---------- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 32px 26px;
+            transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s ease, border-color 0.3s;
+        }
+        .feature-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 20px 40px rgba(15, 23, 42, .06); 
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 1.5px;
+            background: radial-gradient(
+                280px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(59, 130, 246, 0.9),
+                rgba(139, 92, 246, 0.5) 40%,
+                transparent 70%
+            );
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: radial-gradient(
+                400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(59, 130, 246, 0.06),
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+        .feature-ic {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px; color: var(--ink); }
+        .feature-card p { font-size: 14.5px; color: var(--gray-600); line-height: 1.6; margin: 0; }
 
-  .bloom-detail-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
+        /* ---------- HOW IT WORKS ---------- */
+        .steps-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            position: relative;
+            margin-bottom: 40px;
+            gap: 16px;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(40px) scale(0.88);
+            filter: blur(2px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.7s ease;
+        }
+        .step.stack-in {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+        .step-ic {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: #fff;
+            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.2);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .step-ic svg { width: 32px; height: 32px; transition: transform 0.3s ease; }
+        .step:hover .step-ic {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 16px 32px rgba(139, 92, 246, 0.4);
+        }
+        .step:hover .step-ic svg { transform: scale(1.1); }
+        .step h4 { font-size: 16px; font-weight: 700; margin: 0 0 8px; color: #fff; }
+        .step p { font-size: 13px; color: #94a3b8; line-height: 1.5; margin: 0; }
+        .how-cta { text-align: center; margin-top: 40px; }
 
-  .bloom-color-indicator {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #ef4444;
-    transition: background 0.3s ease;
-  }
+        @media (min-width: 961px) {
+            .step-ic { width: 96px; height: 96px; margin-bottom: 24px; }
+        }
+        @media(max-width:960px) {
+            .steps-row { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
+        }
+        @media(max-width:600px) {
+            .steps-row { grid-template-columns: 1fr; gap: 40px; }
+        }
 
-  .bloom-detail-header h3 {
-    font-size: 28px;
-    font-weight: 700;
-    margin: 0;
-  }
+        /* ---------- TEAM ---------- */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15, 23, 42, .06); }
+        .team-photo { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .team-info { padding: 20px; }
+        .team-info h4 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+        .team-info .role { color: var(--blue); font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+        .team-info .bio { font-size: 13.5px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px; }
+        .team-socials { display: flex; gap: 10px; }
+        .team-socials a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            transition: background .2s, color .2s;
+        }
+        .team-socials a:hover { background: var(--blue); color: #fff; }
 
-  .bloom-subtitle {
-    font-size: 16px;
-    color: var(--gray-600);
-    margin-bottom: 24px;
-  }
+        /* ---------- DOWNLOADS & RESOURCES ---------- */
+        .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; }
+        .dl-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 32px 32px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dl-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(15, 23, 42, .06); }
+        .dl-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+        .dl-card h3 { font-size: 22px; font-weight: 700; color: var(--ink); margin: 0 0 12px; }
+        .dl-card p { font-size: 14.5px; color: var(--gray-600); line-height: 1.6; margin: 0 0 20px; min-height: 46px; }
+        .dl-meta { display: flex; gap: 12px; font-size: 13px; color: var(--gray-500); margin-bottom: 20px; }
+        .dl-tags { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; justify-content: center; }
+        .dl-tag { background: var(--gray-50); color: var(--gray-600); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .dl-tag.btn-tag { background: var(--gray-50); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s; }
+        .dl-tag.btn-tag:hover { border-color: var(--gray-500); background: var(--bg-body); }
+        .btn-dl { width: 100%; margin-top: auto; }
 
-  .bloom-verbs-section h4 {
-    font-size: 15px;
-    font-weight: 700;
-    margin: 0 0 12px;
-    color: var(--ink);
-  }
+        /* ---------- RESPONSIVE BREAKPOINTS ---------- */
+        @media(max-width:960px) {
+            .nav-links, .nav-right { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+            .hero p.lead { margin-left: auto; margin-right: auto; }
+            .hero-ctas { justify-content: center; }
+            .stat-row { justify-content: center; }
+            .demo-grid { grid-template-columns: 1fr; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .bloom-tabs { grid-template-columns: repeat(3, 1fr); }
+            .steps-row { flex-direction: column; gap: 40px; }
+            .step { width: 100%; }
+        }
+        
+        @media(max-width:600px) {
+            .stats-inner { grid-template-columns: 1fr; }
+            .bloom-tabs { grid-template-columns: repeat(2, 1fr); }
+        }
 
-  .bloom-verbs-list {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
-  }
-
-  .bloom-verb-tag {
-    background: var(--bg-body);
-    border: 1px solid var(--border-color);
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--gray-600);
-  }
-
-  .bloom-sample-box {
-    background: var(--bg-body);
-    border-radius: 16px;
-    padding: 20px 24px;
-    border: 1px solid var(--border-color);
-    margin-top: auto;
-  }
-
-  .bloom-sample-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--gray-500);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-  }
-
-  .bloom-sample-text {
-    font-size: 15px;
-    font-style: italic;
-    color: var(--ink-2);
-    line-height: 1.6;
-  }
-
-  @media(max-width: 960px) {
-    .bloom-layout { grid-template-columns: 1fr; gap: 32px; }
-    .bloom-orbit-container { height: 380px; transform: scale(0.9); }
-  }
-
-  /* ---------- FEATURES GRID ---------- */
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-  .feature-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    padding: 32px 26px;
-    transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .3s ease, border-color 0.3s;
-  }
-  .feature-card:hover { 
-    transform: translateY(-6px); 
-    box-shadow: 0 20px 40px rgba(15, 23, 42, .06); 
-    border-color: rgba(37, 99, 235, 0.3);
-  }
-  .feature-ic {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  .feature-card h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px; color: var(--ink); }
-  .feature-card p { font-size: 14.5px; color: var(--gray-600); line-height: 1.6; margin: 0; }
-
-  /* ---------- HOW IT WORKS ---------- */
-  .steps-row {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    position: relative;
-    margin-bottom: 40px;
-    gap: 16px;
-  }
-
-  .steps-row::before {
-    content: '';
-    position: absolute;
-    top: 44px;
-    left: 8%;
-    right: 8%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--blue-light), var(--purple));
-    opacity: 0.25;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .step {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .step-ic {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--blue), var(--purple));
-    color: #fff;
-    box-shadow: 0 10px 26px rgba(37, 99, 235, 0.2);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-  }
-
-  .step-ic svg { width: 32px; height: 32px; transition: transform 0.3s ease; }
-  .step:hover .step-ic {
-    transform: translateY(-8px) scale(1.04);
-    box-shadow: 0 16px 32px rgba(139, 92, 246, 0.4);
-  }
-  .step:hover .step-ic svg { transform: scale(1.1); }
-  .step h4 { font-size: 16px; font-weight: 700; margin: 0 0 8px; color: #fff; }
-  .step p { font-size: 13px; color: #94a3b8; line-height: 1.5; margin: 0; }
-  .how-cta { text-align: center; margin-top: 40px; }
-
-  @media (min-width: 961px) {
-    .step-ic { width: 96px; height: 96px; margin-bottom: 24px; }
-    .steps-row::before { top: 48px; }
-  }
-
-  @media(max-width:960px) {
-    .steps-row { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; }
-    .steps-row::before { display: none; }
-  }
-
-  @media(max-width:600px) {
-    .steps-row { grid-template-columns: 1fr; gap: 40px; }
-  }
-
-  /* ---------- TEAM ---------- */
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-  .team-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    overflow: hidden;
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15, 23, 42, .06); }
-  .team-photo { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-  .team-info { padding: 20px; }
-  .team-info h4 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
-  .team-info .role { color: var(--blue); font-weight: 600; font-size: 14px; margin-bottom: 10px; }
-  .team-info .bio { font-size: 13.5px; color: var(--gray-600); line-height: 1.55; margin-bottom: 14px; }
-  .team-socials { display: flex; gap: 10px; }
-  .team-socials a {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gray-50);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray-600);
-    transition: background .2s, color .2s;
-  }
-  .team-socials a:hover { background: var(--blue); color: #fff; }
-
-  /* ---------- DOWNLOADS & RESOURCES ---------- */
-  .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px; }
-  .dl-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 40px 32px 32px;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, .02);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .dl-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(15, 23, 42, .06); }
-  .dl-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    margin-bottom: 24px;
-  }
-  .dl-card h3 { font-size: 22px; font-weight: 700; color: var(--ink); margin: 0 0 12px; }
-  .dl-card p { font-size: 14.5px; color: var(--gray-600); line-height: 1.6; margin: 0 0 20px; min-height: 46px; }
-  .dl-meta { display: flex; gap: 12px; font-size: 13px; color: var(--gray-500); margin-bottom: 20px; }
-  .dl-tags { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; justify-content: center; }
-  .dl-tag { background: var(--gray-50); color: var(--gray-600); font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); }
-  .dl-tag.btn-tag { background: var(--gray-50); border: 1px solid var(--border-color); cursor: pointer; transition: all 0.2s; }
-  .dl-tag.btn-tag:hover { border-color: var(--gray-500); background: var(--bg-body); }
-  .btn-dl { width: 100%; margin-top: auto; }
-
-  /* ---------- RESPONSIVE BREAKPOINTS ---------- */
-  @media(max-width:960px) {
-    .nav-links, .nav-right { display: none; }
-    .menu-toggle { display: flex; }
-    .hero-grid { grid-template-columns: 1fr; gap: 48px; text-align: center; }
-    .hero p.lead { margin-left: auto; margin-right: auto; }
-    .hero-ctas { justify-content: center; }
-    .stat-row { justify-content: center; }
-    .demo-grid { grid-template-columns: 1fr; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .bloom-tabs { grid-template-columns: repeat(3, 1fr); }
-    .steps-row { flex-direction: column; gap: 40px; }
-    .steps-row::before { display: none; }
-    .step { width: 100%; }
-  }
-  
-  @media(max-width:600px) {
-    .stats-inner { grid-template-columns: 1fr; }
-    .bloom-tabs { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .animated-list-item {
-    opacity: 0;
-    transform: translateY(20px) scale(0.96);
-    transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
-    will-change: transform, opacity;
-  }
-  .animated-list-item.in-view {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-</style>
+        /* ---------- PORTFOLIO SNAP FLUID EFFECT ENGINE ---------- */
+        .animated-list-item {
+            opacity: 0;
+            transform: translateY(35px) scale(0.98);
+            transition: opacity 750ms cubic-bezier(0.16, 1, 0.3, 1), transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .animated-list-item.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
 </head>
 <body>
 
 <!-- NAVIGATION COMPONENT -->
 <nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="brand">
-      <img src="logo.jpeg" alt="Examis AI Logo" class="brand-logo-img">
-      Examis AI
-    </a>
-    
-    <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how">How It Works</a>
-      <a href="#demo">Demo</a>
-      <a href="#team">Team</a>
-      <a href="#download-resources">Download</a>
-    </div>
-
-    <div class="nav-actions-container">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle structural layout visual interface color theme">
-        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.22" x2="5.64" y2="17.78"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </button>
-
-      <div class="nav-right">
-        <a href="#download-resources" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download App
+    <div class="nav-inner">
+        <a href="#" class="brand">
+            <img src="logo.jpeg" alt="Examis AI Logo" class="brand-logo-img">
+            Examis AI
         </a>
-      </div>
+        
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#how">How It Works</a>
+            <a href="#demo">Demo</a>
+            <a href="#team">Team</a>
+            <a href="#download-resources">Download</a>
+        </div>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <div class="nav-actions-container">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle structural layout visual interface color theme">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.22" x2="5.64" y2="17.78"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
+            <div class="nav-right">
+                <a href="#download-resources" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download App
+                </a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </div>
-  </div>
 </nav>
 
 <div class="drawer-overlay" id="drawerOverlay"></div>
 <div class="mobile-drawer" id="mobileDrawer">
-  <a href="#features" class="drawer-link">Features</a>
-  <a href="#how" class="drawer-link">How It Works</a>
-  <a href="#demo" class="drawer-link">Demo</a>
-  <a href="#team" class="drawer-link">Team</a>
-  <a href="#download-resources" class="drawer-link">Download</a>
-  <a href="#download-resources" class="btn btn-primary drawer-link" style="margin-top: 16px;">Download App</a>
+    <a href="#features" class="drawer-link">Features</a>
+    <a href="#how" class="drawer-link">How It Works</a>
+    <a href="#demo" class="drawer-link">Demo</a>
+    <a href="#team" class="drawer-link">Team</a>
+    <a href="#download-resources" class="drawer-link">Download</a>
+    <a href="#download-resources" class="btn btn-primary drawer-link" style="margin-top: 16px;">Download App</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="animated-list-item">
-      <span class="eyebrow">✨ AI-Powered Examination Platform</span>
-      <h1>Engineering the Future of <span class="accent">Examination Papers</span></h1>
-      <p class="lead">Transform syllabus data into globally standardized, perfectly formatted examination papers using AI. Reduce preparation time from hours to minutes.</p>
-      <div class="hero-ctas">
-        <a href="#" class="btn btn-outline">▷ Watch Video</a>
-      </div>
-      <div class="stat-row">
-        <div class="stat"><b>500+</b><span>Papers Generated</span></div>
-        <div class="stat"><b>95%</b><span>Time Saved</span></div>
-        <div class="stat"><b>50+</b><span>Universities</span></div>
-      </div>
-    </div>
-
-    <div class="hero-card animated-list-item">
-      <div class="hero-card-badge">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
-      </div>
-      <div class="dropzone">
-        <div class="ic">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 17l10-10M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="wrap hero-grid">
+        <div class="animated-list-item">
+            <span class="eyebrow">✨ AI-Powered Examination Platform</span>
+            <h1>Engineering the Future of <span class="accent">Examination Papers</span></h1>
+            <p class="lead">Transform syllabus data into globally standardized, perfectly formatted examination papers using AI. Reduce preparation time from hours to minutes.</p>
+            <div class="hero-ctas">
+                <a href="#" class="btn btn-outline">▷ Watch Video</a>
+            </div>
+            <div class="stat-row">
+                <div class="stat"><b data-count="500" data-suffix="+">0</b><span>Papers Generated</span></div>
+                <div class="stat"><b data-count="95" data-suffix="%">0</b><span>Time Saved</span></div>
+                <div class="stat"><b data-count="50" data-suffix="+">0</b><span>Universities</span></div>
+            </div>
         </div>
-        <div class="title">Upload Syllabus</div>
-        <div class="sub">PDF, DOCX, or Image</div>
-      </div>
 
-      <div class="progress-item">
-        <div class="row"><span>Extracting CLOs...</span><span>100%</span></div>
-        <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="row"><span>Mapping Bloom's Taxonomy...</span><span>85%</span></div>
-        <div class="progress-track"><div class="progress-fill" style="width:85%"></div></div>
-      </div>
-      <div class="progress-item">
-        <div class="row"><span>Generating Questions...</span><span>60%</span></div>
-        <div class="progress-track"><div class="progress-fill" style="width:60%"></div></div>
-      </div>
+        <div class="hero-card animated-list-item">
+            <div class="hero-card-badge">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
+            </div>
+            <div class="dropzone">
+                <div class="ic">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 17l10-10M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="title">Upload Syllabus</div>
+                <div class="sub">PDF, DOCX, or Image</div>
+            </div>
 
-      <div class="gen-result">
-        <div class="row">
-          <span class="label">Question Generated</span>
-          <span class="pill-analyze">Analyze</span>
+            <div class="progress-item">
+                <div class="row"><span>Extracting CLOs...</span><span id="pct1">0%</span></div>
+                <div class="progress-track"><div class="progress-fill" id="fill1" style="width:0%"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="row"><span>Mapping Bloom's Taxonomy...</span><span id="pct2">0%</span></div>
+                <div class="progress-track"><div class="progress-fill" id="fill2" style="width:0%"></div></div>
+            </div>
+            <div class="progress-item">
+                <div class="row"><span>Generating Questions...</span><span id="pct3">0%</span></div>
+                <div class="progress-track"><div class="progress-fill" id="fill3" style="width:0%"></div></div>
+            </div>
+
+            <div class="gen-result" id="heroResult" style="opacity:0;">
+                <div class="row">
+                    <span class="label">Question Generated</span>
+                    <span class="pill-analyze">Analyze</span>
+                </div>
+                <div class="q" id="heroQText"></div>
+            </div>
         </div>
-        <div class="q">Explain the concept of object-oriented programming...</div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- STATS STRIP -->
 <div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-box animated-list-item">
-      <div class="icon" style="background:#dbeafe;color:#2563eb;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="2"/><path d="M9 13l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <b>10,000+</b><span>Exams Generated</span>
+    <div class="stats-inner">
+        <div class="stat-box animated-list-item">
+            <div class="icon" style="background:#dbeafe;color:#2563eb;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="2"/><path d="M9 13l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <b data-count="10000" data-suffix="+">0</b><span>Exams Generated</span>
+        </div>
+        <div class="stat-box animated-list-item">
+            <div class="icon" style="background:#d1fae5;color:#059669;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <b data-count="95" data-suffix="%">0</b><span>Time Reduction</span>
+        </div>
+        <div class="stat-box animated-list-item">
+            <div class="icon" style="background:#ede9fe;color:#7c3aed;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 14.2c2.6.4 4.5 2.6 4.5 5.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <b data-count="500" data-suffix="+">0</b><span>Active Faculty</span>
+        </div>
+        <div class="stat-box animated-list-item">
+            <div class="icon" style="background:#fef9c3;color:#ca8a04;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <b data-count="4.9" data-suffix="/5" data-decimal="true">0</b><span>User Rating</span>
+        </div>
     </div>
-    <div class="stat-box animated-list-item">
-      <div class="icon" style="background:#d1fae5;color:#059669;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </div>
-      <b>95%</b><span>Time Reduction</span>
-    </div>
-    <div class="stat-box animated-list-item">
-      <div class="icon" style="background:#ede9fe;color:#7c3aed;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17" cy="8" r="2.6" stroke="currentColor" stroke-width="1.6"/><path d="M15.5 14.2c2.6.4 4.5 2.6 4.5 5.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </div>
-      <b>500+</b><span>Active Faculty</span>
-    </div>
-    <div class="stat-box animated-list-item">
-      <div class="icon" style="background:#fef9c3;color:#ca8a04;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 17l5-5 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <b>4.9/5</b><span>User Rating</span>
-    </div>
-  </div>
 </div>
 
 <!-- DEMO -->
 <section class="section" id="demo">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <h2>AI Question Generation in Action</h2>
-      <p>Watch how our AI generates contextually relevant questions with automatic Bloom's Taxonomy classification</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <h2>AI Question Generation in Action</h2>
+            <p>Watch how our AI generates contextually relevant questions with automatic Bloom's Taxonomy classification</p>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-card animated-list-item">
+                <div class="demo-card-head">
+                    <h3>AI Generator</h3>
+                    <span class="sparkle">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
+                    </span>
+                </div>
+                <div>
+                    <div class="field"><div class="k">Course</div><div class="v" id="fCourse">Object-Oriented Programming</div></div>
+                    <div class="field">
+                        <div class="k">
+                            <span class="term-tip">Target CLO
+                                <span class="tip-box">CLO = Course Learning Outcome — a specific skill or knowledge students should gain from a course.</span>
+                            </span>
+                        </div>
+                        <div class="v" id="fClo">CLO-2: Apply OOP concepts</div>
+                    </div>
+                    <div class="field"><div class="k">Bloom's Level</div><div class="v" id="fBloom">Understand</div></div>
+                </div>
+                <button class="generate-btn" id="genBtn">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
+                    Generate New Question
+                </button>
+            </div>
+
+            <div class="question-card-wrapper animated-list-item">
+                <div class="question-card" id="outputCard">
+                    <div class="q-head">
+                        <div>
+                            <span class="tag tag-mcq" id="qType">Short Question</span>
+                        </div>
+                        <div class="marks"><span id="qMarksNum">5</span><span>marks</span></div>
+                    </div>
+                    <div class="tags-row">
+                        <span class="tag tag-remember" id="qBloomTag">Understand</span>
+                        <span class="term-tip"><span class="tag tag-clo" id="qCloTag">CLO-2</span>
+                            <span class="tip-box">CLO = Course Learning Outcome — the specific goal this question is testing.</span>
+                        </span>
+                        <span class="tag tag-easy" id="qDiffTag">Medium</span>
+                    </div>
+                    <div class="q-text" id="qText">Explain the difference between abstract class and interface in Java.</div>
+                    
+                    <div id="optionsContainer">
+                        <div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 18px 0; font-size: 14px; background: var(--gray-50); border-radius: 12px; border: 1px dashed var(--border-color);">[Answer in 3-5 lines]</div>
+                    </div>
+
+                    <div class="q-foot">
+                        <span class="verified">✓ AI Generated &amp; Verified</span>
+                        <span class="q-num">Question #<span id="qNum">2</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="demo-grid">
-      <div class="demo-card animated-list-item">
-        <div class="demo-card-head">
-          <h3>AI Generator</h3>
-          <span class="sparkle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
-          </span>
-        </div>
-        <div>
-          <div class="field"><div class="k">Course</div><div class="v" id="fCourse">Object-Oriented Programming</div></div>
-          <div class="field"><div class="k">Target CLO</div><div class="v" id="fClo">CLO-2: Apply OOP concepts</div></div>
-          <div class="field"><div class="k">Bloom's Level</div><div class="v" id="fBloom">Understand</div></div>
-        </div>
-        <button class="generate-btn" id="genBtn">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
-          Generate New Question
-        </button>
-      </div>
-
-      <div class="question-card animated-list-item" id="outputCard">
-        <div class="q-head">
-          <div>
-            <span class="tag tag-mcq" id="qType">Short Question</span>
-          </div>
-          <div class="marks"><span id="qMarksNum">5</span><span>marks</span></div>
-        </div>
-        <div class="tags-row">
-          <span class="tag tag-remember" id="qBloomTag">Understand</span>
-          <span class="tag tag-clo" id="qCloTag">CLO-2</span>
-          <span class="tag tag-easy" id="qDiffTag">Medium</span>
-        </div>
-        <div class="q-text" id="qText">Explain the difference between abstract class and interface in Java.</div>
-        
-        <div id="optionsContainer">
-          <div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 18px 0; font-size: 14px; background: var(--gray-50); border-radius: 12px; border: 1px dashed var(--border-color);">[Answer in 3-5 lines]</div>
-        </div>
-
-        <div class="q-foot">
-          <span class="verified">✓ AI Generated &amp; Verified</span>
-          <span class="q-num">Question #<span id="qNum">2</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- INTERACTIVE LEARNING LEVELS (BLOOM'S TAXONOMY) -->
 <section class="section" id="learning-levels" style="background: var(--bg-body);">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <h2>Interactive <span style="background: linear-gradient(90deg, #3b82f6, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent;">Learning Levels</span></h2>
-      <p>Click on each level to explore sample questions and understand how our AI aligns with educational standards</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <h2>Interactive <span class="term-tip" style="background: linear-gradient(90deg, #3b82f6, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; border-bottom: 1px dashed #a855f7;">Learning Levels
+                <span class="tip-box" style="-webkit-text-fill-color: #f8fafc;">Bloom's Taxonomy — a framework classifying learning goals from basic recall to advanced creation.</span>
+            </span></h2>
+            <p>Click on each level to explore sample questions and understand how our AI aligns with educational standards</p>
+        </div>
+
+        <div class="bloom-layout">
+            <div class="bloom-orbit-container animated-list-item">
+                <div class="bloom-node node-center" data-level="Center">Bloom's<br>Taxonomy</div>
+                <div class="bloom-node node-remember" data-level="Remember">Remember</div>
+                <div class="bloom-node node-understand" data-level="Understand">Understand</div>
+                <div class="bloom-node node-apply" data-level="Apply">Apply</div>
+                <div class="bloom-node node-analyze" data-level="Analyze">Analyze</div>
+                <div class="bloom-node node-evaluate" data-level="Evaluate">Evaluate</div>
+                <div class="bloom-node node-create" data-level="Create">Create</div>
+            </div>
+
+            <div class="bloom-detail-card animated-list-item">
+                <div class="bloom-detail-header">
+                    <div class="bloom-color-indicator" id="bloomIndicator"></div>
+                    <h3 id="bloomTitle">Apply</h3>
+                </div>
+                
+                <div class="bloom-subtitle" id="bloomSubtitle">Use information in new situations</div>
+                
+                <div class="bloom-verbs-section">
+                    <h4>Example Action Verbs:</h4>
+                    <div class="bloom-verbs-list" id="bloomVerbsContainer">
+                        <span class="bloom-verb-tag">Implement</span>
+                        <span class="bloom-verb-tag">Execute</span>
+                        <span class="bloom-verb-tag">Use</span>
+                        <span class="bloom-verb-tag">Demonstrate</span>
+                    </div>
+                </div>
+
+                <div class="bloom-sample-box">
+                    <div class="bloom-sample-label">Sample Question:</div>
+                    <div class="bloom-sample-text" id="bloomSampleText">"Apply the key principles of machine learning and provide real-world applications."</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="bloom-layout">
-      <div class="bloom-orbit-container animated-list-item">
-        <div class="bloom-node node-center" data-level="Center">Bloom's<br>Taxonomy</div>
-        <div class="bloom-node node-remember" data-level="Remember">Remember</div>
-        <div class="bloom-node node-understand" data-level="Understand">Understand</div>
-        <div class="bloom-node node-apply" data-level="Apply">Apply</div>
-        <div class="bloom-node node-analyze" data-level="Analyze">Analyze</div>
-        <div class="bloom-node node-evaluate" data-level="Evaluate">Evaluate</div>
-        <div class="bloom-node node-create" data-level="Create">Create</div>
-      </div>
-
-      <div class="bloom-detail-card animated-list-item">
-        <div class="bloom-detail-header">
-          <div class="bloom-color-indicator" id="bloomIndicator"></div>
-          <h3 id="bloomTitle">Apply</h3>
-        </div>
-        
-        <div class="bloom-subtitle" id="bloomSubtitle">Use information in new situations</div>
-        
-        <div class="bloom-verbs-section">
-          <h4>Example Action Verbs:</h4>
-          <div class="bloom-verbs-list" id="bloomVerbsContainer">
-            <span class="bloom-verb-tag">Implement</span>
-            <span class="bloom-verb-tag">Execute</span>
-            <span class="bloom-verb-tag">Use</span>
-            <span class="bloom-verb-tag">Demonstrate</span>
-          </div>
-        </div>
-
-        <div class="bloom-sample-box">
-          <div class="bloom-sample-label">Sample Question:</div>
-          <div class="bloom-sample-text" id="bloomSampleText">"Apply the key principles of machine learning and provide real-world applications."</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- FEATURES -->
 <section class="section" id="features">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <h2>Powerful Features</h2>
-      <p>Everything you need to create standardized, high-quality examination papers</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <h2>Powerful Features</h2>
+            <p>Everything you need to create standardized, high-quality examination papers</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#3b82f6,#2563eb);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
+                </div>
+                <h3>AI Syllabus Parsing</h3>
+                <p>Automatically extract course information, CLOs, PLOs, and topics from any syllabus format</p>
+            </div>
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#a855f7,#7c3aed);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg>
+                </div>
+                <h3>Bloom's Taxonomy Mapping</h3>
+                <p>Questions are automatically classified across all six levels of cognitive complexity</p>
+            </div>
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg>
+                </div>
+                <h3>AI Question Generation</h3>
+                <p>Generate contextually relevant MCQs, short questions, and long questions in seconds</p>
+            </div>
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="1.8"/></svg>
+                </div>
+                <h3>Multi-Department Support</h3>
+                <p>Isolated question repositories for different departments with shared university pool</p>
+            </div>
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#f472b6,#ec4899);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M15.5 14.3c2.6.4 4.5 2.6 4.5 5.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <h3>Collaborative Editing</h3>
+                <p>Edit, regenerate, and customize questions with an intuitive editor interface</p>
+            </div>
+            <div class="feature-card animated-list-item">
+                <div class="feature-ic" style="background:linear-gradient(135deg,#818cf8,#6366f1);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Professional Export</h3>
+                <p>Export print-ready DOCX files with university branding and formatting</p>
+            </div>
+        </div>
     </div>
-    <div class="features-grid">
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#3b82f6,#2563eb);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z" fill="currentColor"/></svg>
-        </div>
-        <h3>AI Syllabus Parsing</h3>
-        <p>Automatically extract course information, CLOs, PLOs, and topics from any syllabus format</p>
-      </div>
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#a855f7,#7c3aed);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg>
-        </div>
-        <h3>Bloom's Taxonomy Mapping</h3>
-        <p>Questions are automatically classified across all six levels of cognitive complexity</p>
-      </div>
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#22c55e,#16a34a);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" fill="currentColor"/></svg>
-        </div>
-        <h3>AI Question Generation</h3>
-        <p>Generate contextually relevant MCQs, short questions, and long questions in seconds</p>
-      </div>
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#fbbf24,#f59e0b);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="1.8"/></svg>
-        </div>
-        <h3>Multi-Department Support</h3>
-        <p>Isolated question repositories for different departments with shared university pool</p>
-      </div>
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#f472b6,#ec4899);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="17" cy="8" r="2.4" stroke="currentColor" stroke-width="1.5"/><path d="M15.5 14.3c2.6.4 4.5 2.6 4.5 5.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <h3>Collaborative Editing</h3>
-        <p>Edit, regenerate, and customize questions with an intuitive editor interface</p>
-      </div>
-      <div class="feature-card animated-list-item">
-        <div class="feature-ic" style="background:linear-gradient(135deg,#818cf8,#6366f1);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </div>
-        <h3>Professional Export</h3>
-        <p>Export print-ready DOCX files with university branding and formatting</p>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="section section-dark" id="how">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <span class="eyebrow" style="background: rgba(255,255,255,0.06); color: #a7f3d0; margin-bottom: 16px; border-color: rgba(255,255,255,0.1);">Simple Workflow</span>
-      <h2>6 Steps to <span style="background: linear-gradient(90deg, #3b82f6, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent;">Perfect Papers</span></h2>
-      <p>Our streamlined process gets you from syllabus to examination paper in minutes</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <span class="eyebrow" style="background: rgba(255,255,255,0.06); color: #a7f3d0; margin-bottom: 16px; border-color: rgba(255,255,255,0.1);">Simple Workflow</span>
+            <h2>6 Steps to <span style="background: linear-gradient(90deg, #3b82f6, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent;">Perfect Papers</span></h2>
+            <p>Our streamlined process gets you from syllabus to examination paper in minutes</p>
+        </div>
+        
+        <div class="steps-row">
+            <!-- STEP 1 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <h4>Upload Syllabus</h4>
+                <p>Upload your course syllabus in PDF or DOCX format</p>
+            </div>
+            
+            <!-- STEP 2 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"/>
+                        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"/>
+                    </svg>
+                </div>
+                <h4>Extract CLOs</h4>
+                <p>AI automatically extracts Course Learning Outcomes</p>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                </div>
+                <h4>Select Department</h4>
+                <p>Choose your academic department for context</p>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v4M12 17v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M17 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h4>Generate Questions</h4>
+                <p>AI creates aligned questions instantly</p>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <polyline points="9 15 11 17 15 13"/>
+                    </svg>
+                </div>
+                <h4>Preview &amp; Edit</h4>
+                <p>Review and customize generated questions</p>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="step">
+                <div class="step-ic">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </div>
+                <h4>Export Paper</h4>
+                <p>Download professionally formatted examination paper</p>
+            </div>
+        </div>
+        
+        <div class="how-cta animated-list-item">
+            <a href="#download-resources" class="btn btn-outline" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.25);">Get Started Now</a>
+        </div>
     </div>
-    
-    <div class="steps-row">
-      <!-- STEP 1 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="17 8 12 3 7 8"/>
-            <line x1="12" y1="3" x2="12" y2="15"/>
-          </svg>
-        </div>
-        <h4>Upload Syllabus</h4>
-        <p>Upload your course syllabus in PDF or DOCX format</p>
-      </div>
-      
-      <!-- STEP 2 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"/>
-            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"/>
-          </svg>
-        </div>
-        <h4>Extract CLOs</h4>
-        <p>AI automatically extracts Course Learning Outcomes</p>
-      </div>
-
-      <!-- STEP 3 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="6"/>
-            <circle cx="12" cy="12" r="2"/>
-          </svg>
-        </div>
-        <h4>Select Department</h4>
-        <p>Choose your academic department for context</p>
-      </div>
-
-      <!-- STEP 4 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3v4M12 17v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M17 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-          </svg>
-        </div>
-        <h4>Generate Questions</h4>
-        <p>AI creates aligned questions instantly</p>
-      </div>
-
-      <!-- STEP 5 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <polyline points="9 15 11 17 15 13"/>
-          </svg>
-        </div>
-        <h4>Preview &amp; Edit</h4>
-        <p>Review and customize generated questions</p>
-      </div>
-
-      <!-- STEP 6 -->
-      <div class="step animated-list-item">
-        <div class="step-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-        </div>
-        <h4>Export Paper</h4>
-        <p>Download professionally formatted examination paper</p>
-      </div>
-    </div>
-    
-    <div class="how-cta animated-list-item">
-      <a href="#download-resources" class="btn btn-outline" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.25);">Get Started Now</a>
-    </div>
-  </div>
 </section>
 
 <!-- TEAM -->
 <section class="section" id="team">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <h2>Meet Our Team</h2>
-      <p>Experts in AI, education, and technology working to transform academic assessments</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <h2>Meet Our Team</h2>
+            <p>Experts in AI, education, and technology working to transform academic assessments</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card animated-list-item">
+                <img class="team-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=faces" alt="Dr. Sarah Johnson">
+                <div class="team-info">
+                    <h4>Dr. Sarah Johnson</h4>
+                    <div class="role">Lead AI Researcher</div>
+                    <div class="bio">PhD in Machine Learning, 10+ years in NLP</div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.75c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 015 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+                        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
+                        <a href="#" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card animated-list-item">
+                <img class="team-photo" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop&crop=faces" alt="Michael Chen">
+                <div class="team-info">
+                    <h4>Michael Chen</h4>
+                    <div class="role">Full-Stack Engineer</div>
+                    <div class="bio">Expert in React, Python, and cloud architecture</div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="GitHub"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.75c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 015 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+                        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
+                        <a href="#" aria-label="Website"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z" stroke="currentColor" stroke-width="1.7"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card animated-list-item">
+                <img class="team-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=faces" alt="Prof. Emily Rodriguez">
+                <div class="team-info">
+                    <h4>Prof. Emily Rodriguez</h4>
+                    <div class="role">Education Consultant</div>
+                    <div class="bio">Former Dean of Academic Affairs, Assessment Expert</div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
+                        <a href="#" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card animated-list-item">
+                <img class="team-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces" alt="David Kim">
+                <div class="team-info">
+                    <h4>David Kim</h4>
+                    <div class="role">Product Designer</div>
+                    <div class="bio">UI/UX specialist with focus on educational tools</div>
+                    <div class="team-socials">
+                        <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
+                        <a href="#" aria-label="Website"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z" stroke="currentColor" stroke-width="1.7"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="team-grid">
-      <div class="team-card animated-list-item">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=faces" alt="Dr. Sarah Johnson">
-        <div class="team-info">
-          <h4>Dr. Sarah Johnson</h4>
-          <div class="role">Lead AI Researcher</div>
-          <div class="bio">PhD in Machine Learning, 10+ years in NLP</div>
-          <div class="team-socials">
-            <a href="#" aria-label="GitHub"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.75c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 015 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
-            <a href="#" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-card animated-list-item">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop&crop=faces" alt="Michael Chen">
-        <div class="team-info">
-          <h4>Michael Chen</h4>
-          <div class="role">Full-Stack Engineer</div>
-          <div class="bio">Expert in React, Python, and cloud architecture</div>
-          <div class="team-socials">
-            <a href="#" aria-label="GitHub"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.75c-2.78.62-3.37-1.36-3.37-1.36-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 015 0c1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.94-2.35 4.8-4.58 5.06.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
-            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
-            <a href="#" aria-label="Website"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z" stroke="currentColor" stroke-width="1.7"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-card animated-list-item">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=faces" alt="Prof. Emily Rodriguez">
-        <div class="team-info">
-          <h4>Prof. Emily Rodriguez</h4>
-          <div class="role">Education Consultant</div>
-          <div class="bio">Former Dean of Academic Affairs, Assessment Expert</div>
-          <div class="team-socials">
-            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
-            <a href="#" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4V6z" stroke="currentColor" stroke-width="1.7"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.7"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-card animated-list-item">
-        <img class="team-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces" alt="David Kim">
-        <div class="team-info">
-          <h4>David Kim</h4>
-          <div class="role">Product Designer</div>
-          <div class="bio">UI/UX specialist with focus on educational tools</div>
-          <div class="team-socials">
-            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 11-.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4.03 0 4.78 2.66 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z"/></svg></a>
-            <a href="#" aria-label="Website"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z" stroke="currentColor" stroke-width="1.7"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- DOWNLOADS & RESOURCES -->
 <section class="section" id="download-resources" style="background: var(--gray-50); border-top: 1px solid var(--border-color);">
-  <div class="wrap">
-    <div class="section-head animated-list-item">
-      <h2>Downloads &amp; Resources</h2>
-      <p>Get started with Examis AI - download the app, view samples, or explore documentation</p>
+    <div class="wrap">
+        <div class="section-head animated-list-item">
+            <h2>Downloads &amp; Resources</h2>
+            <p>Get started with Examis AI - download the app, view samples, or explore documentation</p>
+        </div>
+
+        <div class="dl-grid">
+            <div class="dl-card animated-list-item">
+                <div class="dl-icon" style="background: var(--blue);">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <h3>Desktop Application</h3>
+                <p>Full-featured desktop app for Windows, macOS, and Linux</p>
+                <div class="dl-meta">
+                    <span>125 MB</span>
+                    <span>•</span>
+                    <span>v1.0.0</span>
+                </div>
+                <div class="dl-tags">
+                    <span class="dl-tag">Windows</span>
+                    <span class="dl-tag">macOS</span>
+                    <span class="dl-tag">Linux</span>
+                </div>
+                <a href="#" class="btn btn-primary btn-dl">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Now
+                </a>
+            </div>
+
+            <div class="dl-card animated-list-item">
+                <div class="dl-icon" style="background: var(--green);">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <h3>Sample Examination Paper</h3>
+                <p>Download a sample AI-generated exam to see the quality</p>
+                <div class="dl-meta">
+                    <span>2.4 MB</span>
+                    <span>•</span>
+                    <span>DOCX</span>
+                </div>
+                <div class="dl-tags">
+                    <span class="dl-tag btn-tag">Preview</span>
+                    <span class="dl-tag btn-tag">Download</span>
+                </div>
+                <a href="#" class="btn btn-green btn-dl">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Now
+                </a>
+            </div>
+
+            <div class="dl-card animated-list-item">
+                <div class="dl-icon" style="background: var(--purple);">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <h3>Documentation</h3>
+                <p>Complete user guide and API documentation</p>
+                <div class="dl-meta">
+                    <span>8.7 MB</span>
+                    <span>•</span>
+                    <span>PDF</span>
+                </div>
+                <div class="dl-tags">
+                    <span class="dl-tag btn-tag">View Online</span>
+                    <span class="dl-tag btn-tag">Download PDF</span>
+                </div>
+                <a href="#" class="btn btn-dl" style="background: var(--purple); color: #fff; box-shadow: 0 6px 16px rgba(139,92,246,.3);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Now
+                </a>
+            </div>
+        </div>
     </div>
-
-    <div class="dl-grid">
-      <div class="dl-card animated-list-item">
-        <div class="dl-icon" style="background: var(--blue);">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </div>
-        <h3>Desktop Application</h3>
-        <p>Full-featured desktop app for Windows, macOS, and Linux</p>
-        <div class="dl-meta">
-          <span>125 MB</span>
-          <span>•</span>
-          <span>v1.0.0</span>
-        </div>
-        <div class="dl-tags">
-          <span class="dl-tag">Windows</span>
-          <span class="dl-tag">macOS</span>
-          <span class="dl-tag">Linux</span>
-        </div>
-        <a href="#" class="btn btn-primary btn-dl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Now
-        </a>
-      </div>
-
-      <div class="dl-card animated-list-item">
-        <div class="dl-icon" style="background: var(--green);">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3>Sample Examination Paper</h3>
-        <p>Download a sample AI-generated exam to see the quality</p>
-        <div class="dl-meta">
-          <span>2.4 MB</span>
-          <span>•</span>
-          <span>DOCX</span>
-        </div>
-        <div class="dl-tags">
-          <span class="dl-tag btn-tag">Preview</span>
-          <span class="dl-tag btn-tag">Download</span>
-        </div>
-        <a href="#" class="btn btn-green btn-dl">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Now
-        </a>
-      </div>
-
-      <div class="dl-card animated-list-item">
-        <div class="dl-icon" style="background: var(--purple);">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <h3>Documentation</h3>
-        <p>Complete user guide and API documentation</p>
-        <div class="dl-meta">
-          <span>8.7 MB</span>
-          <span>•</span>
-          <span>PDF</span>
-        </div>
-        <div class="dl-tags">
-          <span class="dl-tag btn-tag">View Online</span>
-          <span class="dl-tag btn-tag">Download PDF</span>
-        </div>
-        <a href="#" class="btn btn-dl" style="background: var(--purple); color: #fff; box-shadow: 0 6px 16px rgba(139,92,246,.3);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Now
-        </a>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- RESPONSIVE FOOTER MODIFIED PER image_924638.png -->
+<!-- RESPONSIVE FOOTER -->
 <footer class="bg-[#0B1220] text-gray-400 py-16 font-sans antialiased">
-  <div class="max-w-7xl mx-auto px-6 space-y-12">
-      
-      <!-- Top Grid Matrix Layout -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-4 items-start">
-          
-          <!-- Brand Column -->
-          <div class="md:col-span-5 space-y-4">
-              <a href="#" class="flex items-center space-x-2 text-white group" aria-label="Examis AI Home">
-                  <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                  </svg>
-                  <span class="text-xl font-black tracking-tight text-white">
-                      Examis AI
-                  </span>
-              </a>
-              <p class="text-sm leading-relaxed max-w-xs text-gray-400">
-                  AI-powered examination paper generation for modern educators
-              </p>
-              <!-- Social Navigation Icons Suite -->
-              <div class="flex items-center space-x-4 pt-2 text-gray-400">
-                  <a href="https://github.com" target="_blank" class="hover:text-white transition-colors" aria-label="GitHub Repository">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" class="hover:text-white transition-colors" aria-label="LinkedIn Network">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                  </a>
-                  <a href="mailto:support@examisai.com" class="hover:text-white transition-colors" aria-label="Email Support">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                  </a>
-              </div>
-          </div>
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+        
+        <!-- Top Grid Matrix Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-4 items-start">
+            
+            <!-- Brand Column -->
+            <div class="md:col-span-5 space-y-4">
+                <a href="#" class="flex items-center space-x-2 text-white group" aria-label="Examis AI Home">
+                    <svg class="w-6 h-6 text-brand-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <span class="text-xl font-black tracking-tight text-white">Examis AI</span>
+                </a>
+                <p class="text-sm leading-relaxed max-w-xs text-gray-400">
+                    AI-powered examination paper generation for modern educators
+                </p>
+                <!-- Social Navigation Icons Suite -->
+                <div class="flex items-center space-x-4 pt-2 text-gray-400">
+                    <a href="https://github.com" target="_blank" class="hover:text-white transition-colors" aria-label="GitHub Repository">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-white transition-colors" aria-label="LinkedIn Network">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="mailto:support@examisai.com" class="hover:text-white transition-colors" aria-label="Email Support">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </a>
+                </div>
+            </div>
 
-          <!-- Product Block -->
-          <div class="md:col-span-2 space-y-4">
-              <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Product</h3>
-              <ul class="space-y-2 text-sm font-medium">
-                  <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
-                  <li><a href="#how" class="hover:text-white transition-colors">How It Works</a></li>
-                  <li><a href="#demo" class="hover:text-white transition-colors">Roadmap</a></li>
-              </ul>
-          </div>
+            <!-- Product Block -->
+            <div class="md:col-span-2 space-y-4">
+                <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Product</h3>
+                <ul class="space-y-2 text-sm font-medium">
+                    <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                    <li><a href="#how" class="hover:text-white transition-colors">How It Works</a></li>
+                    <li><a href="#demo" class="hover:text-white transition-colors">Roadmap</a></li>
+                </ul>
+            </div>
 
-          <!-- Company Block -->
-          <div class="md:col-span-2 space-y-4">
-              <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Company</h3>
-              <ul class="space-y-2 text-sm font-medium">
-                  <li><a href="#team" class="hover:text-white transition-colors">About Us</a></li>
-                  <li><a href="#download-resources" class="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-          </div>
+            <!-- Company Block -->
+            <div class="md:col-span-2 space-y-4">
+                <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Company</h3>
+                <ul class="space-y-2 text-sm font-medium">
+                    <li><a href="#team" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#download-resources" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
 
-          <!-- Resources Block -->
-          <div class="md:col-span-3 space-y-4">
-              <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Resources</h3>
-              <ul class="space-y-2 text-sm font-medium">
-                  <li><a href="#download-resources" class="hover:text-white transition-colors">Downloads</a></li>
-                  <li><a href="#download-resources" class="hover:text-white transition-colors">Documentation</a></li>
-                  <li><a href="#download-resources" class="hover:text-white transition-colors">Support</a></li>
-              </ul>
-          </div>
-      </div>
+            <!-- Resources Block -->
+            <div class="md:col-span-3 space-y-4">
+                <h3 class="text-xs font-black text-white uppercase tracking-wider font-sans">Resources</h3>
+                <ul class="space-y-2 text-sm font-medium">
+                    <li><a href="#download-resources" class="hover:text-white transition-colors">Downloads</a></li>
+                    <li><a href="#download-resources" class="hover:text-white transition-colors">Documentation</a></li>
+                    <li><a href="#download-resources" class="hover:text-white transition-colors">Support</a></li>
+                </ul>
+            </div>
+        </div>
 
-      <!-- Footer Divider Layer Line and Responsive Legal Sub-row layout matrix matching image_924638.png -->
-      <div class="border-t border-gray-800/40 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
-          <span class="text-gray-500 text-center sm:text-left">
-              &copy; 2026 Examis AI. All rights reserved.
-          </span>
-          <ul class="flex flex-row items-center justify-center space-x-6 text-gray-400 w-full sm:w-auto">
-              <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-          </ul>
-      </div>
-
-  </div>
+        <!-- Footer Bottom Bar -->
+        <div class="border-t border-gray-800/40 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
+            <span class="text-gray-500">
+                &copy; 2026 Examis AI. All rights reserved.
+            </span>
+            <ul class="flex items-center space-x-6 text-gray-400">
+                <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" class="hover:text-white text-white font-bold transition-colors">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </div>
 </footer>
 
 <script>
-  // ---- Theme State Engine (Dark/Light Mode) ----
-  const themeToggle = document.getElementById('themeToggle');
-  const currentTheme = localStorage.getItem('theme') || 'light';
+    // ---- Theme State Engine (Dark/Light Mode) ----
+    const themeToggle = document.getElementById('themeToggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
 
-  if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-
-  themeToggle.addEventListener('click', () => {
-    let theme = 'light';
-    if (document.documentElement.getAttribute('data-theme') !== 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      theme = 'dark';
-    } else {
-      document.documentElement.removeAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
     }
-    localStorage.setItem('theme', theme);
-  });
 
-  // ---- Mobile Menu Drawer System ----
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerOverlay = document.getElementById('drawerOverlay');
-  const drawerLinks = document.querySelectorAll('.drawer-link');
-
-  function toggleMenu() {
-    menuToggle.classList.toggle('open');
-    mobileDrawer.classList.toggle('open');
-    drawerOverlay.classList.toggle('open');
-    document.body.style.overflow = mobileDrawer.classList.contains('open') ? 'hidden' : '';
-  }
-
-  menuToggle.addEventListener('click', toggleMenu);
-  drawerOverlay.addEventListener('click', toggleMenu);
-  drawerLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-  // ---- Bloom's Taxonomy Interactive Engine ----
-  const taxonomyData = {
-    Center: {
-      title: "Bloom's Taxonomy",
-      subtitle: "A framework for classifying educational learning objectives into levels of complexity and specificity.",
-      color: "#6366f1",
-      verbs: ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"],
-      sample: "Select an outer level node orbit to analyze system capability alignments and actions dynamically."
-    },
-    Remember: {
-      title: "Remember",
-      subtitle: "Retrieve relevant knowledge from long-term memory",
-      color: "#ef4444",
-      verbs: ["Define", "List", "State", "Recall"],
-      sample: "\"Define the basic principles of object-oriented programming.\""
-    },
-    Understand: {
-      title: "Understand",
-      subtitle: "Construct meaning from instructional messages and materials",
-      color: "#f97316",
-      verbs: ["Explain", "Classify", "Summarize", "Compare"],
-      sample: "\"Explain how encapsulation improves code maintainability.\""
-    },
-    Apply: {
-      title: "Apply",
-      subtitle: "Use information in new situations",
-      color: "#eab308",
-      verbs: ["Implement", "Execute", "Use", "Demonstrate"],
-      sample: "\"Apply the key principles of machine learning and provide real-world applications.\""
-    },
-    Analyze: {
-      title: "Analyze",
-      subtitle: "Break material into constituent parts and determine relationships",
-      color: "#22c55e",
-      verbs: ["Compare", "Contrast", "Deconstruct", "Outline"],
-      sample: "\"Compare and contrast composition versus inheritance in a given codebase.\""
-    },
-    Evaluate: {
-      title: "Evaluate",
-      subtitle: "Make judgments based on criteria and standards",
-      color: "#3b82f6",
-      verbs: ["Critique", "Judge", "Verify", "Defend"],
-      sample: "\"Critique the design of a class hierarchy and justify architectural improvements.\""
-    },
-    Create: {
-      title: "Create",
-      subtitle: "Put elements together to form a coherent or functional whole",
-      color: "#a855f7",
-      verbs: ["Design", "Construct", "Plan", "Produce"],
-      sample: "\"Design an OOP-based system architecture for a high-availability management application.\""
-    }
-  };
-
-  const bloomNodes = document.querySelectorAll('.bloom-node');
-  const bIndicator = document.getElementById('bloomIndicator');
-  const bTitle = document.getElementById('bloomTitle');
-  const bSubtitle = document.getElementById('bloomSubtitle');
-  const bVerbsContainer = document.getElementById('bloomVerbsContainer');
-  const bSampleText = document.getElementById('bloomSampleText');
-
-  function updateBloomCard(level) {
-    const data = taxonomyData[level];
-    bTitle.textContent = data.title;
-    bSubtitle.textContent = data.subtitle;
-    bIndicator.style.background = data.color;
-    bSampleText.textContent = data.sample;
-    
-    bVerbsContainer.innerHTML = '';
-    data.verbs.forEach(verb => {
-      const tag = document.createElement('span');
-      tag.className = 'bloom-verb-tag';
-      tag.textContent = verb;
-      bVerbsContainer.appendChild(tag);
+    themeToggle.addEventListener('click', () => {
+        let theme = 'light';
+        if (document.documentElement.getAttribute('data-theme') !== 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            theme = 'dark';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        localStorage.setItem('theme', theme);
     });
-  }
 
-  bloomNodes.forEach(node => {
-    node.addEventListener('click', () => {
-      bloomNodes.forEach(n => n.classList.remove('active'));
-      node.classList.add('active');
-      updateBloomCard(node.dataset.level);
-    });
-  });
+    // ---- Mobile Menu Drawer System ----
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerLinks = document.querySelectorAll('.drawer-link');
 
-  updateBloomCard('Apply');
-  const activeNode = document.querySelector('.node-apply');
-  if (activeNode) activeNode.classList.add('active');
-
-  // ---- AI Generator demo ----
-  const questionBank = [
-    { 
-      type: "Short Question", bloom: "Understand", clo: "CLO-2", cloFull: "CLO-2: Apply OOP concepts", diff: "Medium", marks: 5, qNum: 2,
-      text: "Explain the difference between abstract class and interface in Java.",
-      optionsHtml: '<div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 10px 0; font-size: 14px;">[Answer in 3-5 lines]</div>'
-    },
-    { 
-      type: "Long Question", bloom: "Create", clo: "CLO-3", cloFull: "CLO-3: Apply OOP concepts", diff: "Hard", marks: 10, qNum: 3,
-      text: "Design and implement a library management system using object-oriented principles. Include class diagrams and code fragments.",
-      optionsHtml: '<div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 10px 0; font-size: 14px;">[Answer with detailed explanation and diagrams]</div>'
-    },
-    { 
-      type: "MCQ Question", bloom: "Remember", clo: "CLO-1", cloFull: "CLO-1: Apply OOP concepts", diff: "Easy", marks: 2, qNum: 1,
-      text: "Which of the following is NOT a principle of Object-Oriented Programming?",
-      optionsHtml: '<div class="option">A. Encapsulation</div><div class="option">B. Inheritance</div><div class="option">C. Compilation</div><div class="option">D. Polymorphism</div>'
+    function toggleMenu() {
+        menuToggle.classList.toggle('open');
+        mobileDrawer.classList.toggle('open');
+        drawerOverlay.classList.toggle('open');
+        document.body.style.overflow = mobileDrawer.classList.contains('open') ? 'hidden' : '';
     }
-  ];
 
-  let currentBankIndex = 0;
-  const genBtn = document.getElementById('genBtn');
-  const outputCard = document.getElementById('outputCard');
+    menuToggle.addEventListener('click', toggleMenu);
+    drawerOverlay.addEventListener('click', toggleMenu);
+    drawerLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-  genBtn.addEventListener('click', () => {
-    currentBankIndex = (currentBankIndex + 1) % questionBank.length;
-    const q = questionBank[currentBankIndex];
+    // ---- Bloom's Taxonomy Interactive Engine ----
+    const taxonomyData = {
+        Center: {
+            title: "Bloom's Taxonomy",
+            subtitle: "A framework for classifying educational learning objectives into levels of complexity and specificity.",
+            color: "#6366f1",
+            verbs: ["Remember", "Understand", "Apply", "Analyze", "Evaluate", "Create"],
+            sample: "Select an outer level node orbit to analyze system capability alignments and actions dynamically."
+        },
+        Remember: {
+            title: "Remember",
+            subtitle: "Retrieve relevant knowledge from long-term memory",
+            color: "#ef4444",
+            verbs: ["Define", "List", "State", "Recall"],
+            sample: "\"Define the basic principles of object-oriented programming.\""
+        },
+        Understand: {
+            title: "Understand",
+            subtitle: "Construct meaning from instructional messages and materials",
+            color: "#f97316",
+            verbs: ["Explain", "Classify", "Summarize", "Compare"],
+            sample: "\"Explain how encapsulation improves code maintainability.\""
+        },
+        Apply: {
+            title: "Apply",
+            subtitle: "Use information in new situations",
+            color: "#eab308",
+            verbs: ["Implement", "Execute", "Use", "Demonstrate"],
+            sample: "\"Apply the key principles of machine learning and provide real-world applications.\""
+        },
+        Analyze: {
+            title: "Analyze",
+            subtitle: "Break material into constituent parts and determine relationships",
+            color: "#22c55e",
+            verbs: ["Compare", "Contrast", "Deconstruct", "Outline"],
+            sample: "\"Compare and contrast composition versus inheritance in a given codebase.\""
+        },
+        Evaluate: {
+            title: "Evaluate",
+            subtitle: "Make judgments based on criteria and standards",
+            color: "#3b82f6",
+            verbs: ["Critique", "Judge", "Verify", "Defend"],
+            sample: "\"Critique the design of a class hierarchy and justify architectural improvements.\""
+        },
+        Create: {
+            title: "Create",
+            subtitle: "Put elements together to form a coherent or functional whole",
+            color: "#a855f7",
+            verbs: ["Design", "Construct", "Plan", "Produce"],
+            sample: "\"Design an OOP-based system architecture for a high-availability management application.\""
+        }
+    };
 
-    genBtn.disabled = true;
-    outputCard.classList.add('ai-loading-active');
-    const baseBtnContent = genBtn.innerHTML;
-    genBtn.innerHTML = `
+    const bloomNodes = document.querySelectorAll('.bloom-node');
+    const bIndicator = document.getElementById('bloomIndicator');
+    const bTitle = document.getElementById('bloomTitle');
+    const bSubtitle = document.getElementById('bloomSubtitle');
+    const bVerbsContainer = document.getElementById('bloomVerbsContainer');
+    const bSampleText = document.getElementById('bloomSampleText');
+
+    function updateBloomCard(level) {
+        const data = taxonomyData[level];
+        bTitle.textContent = data.title;
+        bSubtitle.textContent = data.subtitle;
+        bIndicator.style.background = data.color;
+        bSampleText.textContent = data.sample;
+        
+        bVerbsContainer.innerHTML = '';
+        data.verbs.forEach(verb => {
+            const tag = document.createElement('span');
+            tag.className = 'bloom-verb-tag';
+            tag.textContent = verb;
+            bVerbsContainer.appendChild(tag);
+        });
+    }
+
+    bloomNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            bloomNodes.forEach(n => n.classList.remove('active'));
+            node.classList.add('active');
+            updateBloomCard(node.dataset.level);
+        });
+    });
+
+    updateBloomCard('Apply');
+    const activeNode = document.querySelector('.node-apply');
+    if (activeNode) activeNode.classList.add('active');
+
+    // ---- AI Generator Demo ----
+    const questionBank = [
+        { 
+            type: "Short Question", bloom: "Understand", clo: "CLO-2", cloFull: "CLO-2: Apply OOP concepts", diff: "Medium", marks: 5, qNum: 2,
+            text: "Explain the difference between abstract class and interface in Java.",
+            optionsHtml: '<div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 10px 0; font-size: 14px;">[Answer in 3-5 lines]</div>'
+        },
+        { 
+            type: "Long Question", bloom: "Create", clo: "CLO-3", cloFull: "CLO-3: Apply OOP concepts", diff: "Hard", marks: 10, qNum: 3,
+            text: "Design and implement a library management system using object-oriented principles. Include class diagrams and code fragments.",
+            optionsHtml: '<div style="color: var(--gray-500); font-style: italic; text-align: center; padding: 10px 0; font-size: 14px;">[Answer with detailed explanation and diagrams]</div>'
+        },
+        { 
+            type: "MCQ Question", bloom: "Remember", clo: "CLO-1", cloFull: "CLO-1: Apply OOP concepts", diff: "Easy", marks: 2, qNum: 1,
+            text: "Which of the following is NOT a principle of Object-Oriented Programming?",
+            optionsHtml: '<div class="option">A. Encapsulation</div><div class="option">B. Inheritance</div><div class="option">C. Compilation</div><div class="option">D. Polymorphism</div>'
+        }
+    ];
+
+    let currentBankIndex = 0;
+    const genBtn = document.getElementById('genBtn');
+    const outputCard = document.getElementById('outputCard');
+
+    genBtn.addEventListener('click', () => {
+        currentBankIndex = (currentBankIndex + 1) % questionBank.length;
+        const q = questionBank[currentBankIndex];
+
+        genBtn.disabled = true;
+        const baseBtnContent = genBtn.innerHTML;
+        genBtn.innerHTML = `
       <svg class="spinner" width="16" height="16" viewBox="0 0 50 50" style="animation: spin 1s linear infinite; margin-right: 4px;">
         <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-dasharray="31.4, 31.4"></circle>
       </svg> Generating...`;
 
-    setTimeout(() => {
-      document.getElementById('fClo').textContent = q.cloFull;
-      document.getElementById('fBloom').textContent = q.bloom;
+        // flip out
+        outputCard.classList.add('flip-out');
 
-      document.getElementById('qType').textContent = q.type;
-      document.getElementById('qBloomTag').textContent = q.bloom;
-      document.getElementById('qCloTag').textContent = q.clo;
-      document.getElementById('qDiffTag').textContent = q.diff;
-      document.getElementById('qMarksNum').textContent = q.marks;
-      document.getElementById('qText').textContent = q.text;
-      document.getElementById('qNum').textContent = q.qNum;
-      document.getElementById('optionsContainer').innerHTML = q.optionsHtml;
+        setTimeout(() => {
+            document.getElementById('fClo').textContent = q.cloFull;
+            document.getElementById('fBloom').textContent = q.bloom;
 
-      genBtn.disabled = false;
-      outputCard.classList.remove('ai-loading-active');
-      genBtn.innerHTML = baseBtnContent;
-    }, 750);
-  });
+            document.getElementById('qType').textContent = q.type;
+            document.getElementById('qBloomTag').textContent = q.bloom;
+            document.getElementById('qCloTag').textContent = q.clo;
+            document.getElementById('qDiffTag').textContent = q.diff;
+            document.getElementById('qMarksNum').textContent = q.marks;
+            document.getElementById('qText').textContent = q.text;
+            document.getElementById('qNum').textContent = q.qNum;
+            document.getElementById('optionsContainer').innerHTML = q.optionsHtml;
 
-  // ---- Continuous Staggered Viewport Animation ----
-  const animatedItems = document.querySelectorAll('.animated-list-item');
+            // flip in
+            outputCard.classList.remove('flip-out');
+            outputCard.classList.add('flip-in');
 
-  const listObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const element = entry.target;
-      if (entry.isIntersecting) {
-        element.classList.add('in-view');
-      } else {
-        element.style.transitionDelay = '0s';
-        element.classList.remove('in-view');
-      }
+            genBtn.disabled = false;
+            genBtn.innerHTML = baseBtnContent;
+
+            setTimeout(() => outputCard.classList.remove('flip-in'), 300);
+        }, 350);
     });
-  }, {
-    root: null,
-    threshold: 0.1,
-    rootMargin: "0px 0px -10px 0px"
-  });
 
-  animatedItems.forEach(item => listObserver.observe(item));
+    // ---- Replayable Staggered Portfolio Viewport Animation Engine ----
+    const animatedItems = document.querySelectorAll('.animated-list-item');
+
+    const listObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const element = entry.target;
+            if (entry.isIntersecting) {
+                element.classList.add('in-view');
+            } else {
+                element.style.transitionDelay = '0s';
+                element.classList.remove('in-view'); // Allows the entry loop to repeat on scroll up/down
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.05,
+        rootMargin: "0px 0px -20px 0px"
+    });
+
+    animatedItems.forEach(item => listObserver.observe(item));
+
+    // ---- Hero Card Auto-Play Demo ----
+    const heroQuestions = [
+        "Explain the concept of object-oriented programming...",
+        "Compare and contrast composition versus inheritance...",
+        "Design a class hierarchy for a library management system..."
+    ];
+    let heroPlaying = false;
+    let heroVisible = false;
+    let heroIndex = 0;
+
+    function typeText(el, text, speed = 25) {
+        el.textContent = '';
+        let i = 0;
+        return new Promise(resolve => {
+            const type = () => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    resolve();
+                }
+            };
+            type();
+        });
+    }
+
+    async function playHeroDemo() {
+        if (heroPlaying) return;
+        heroPlaying = true;
+
+        const fills = [document.getElementById('fill1'), document.getElementById('fill2'), document.getElementById('fill3')];
+        const pcts = [document.getElementById('pct1'), document.getElementById('pct2'), document.getElementById('pct3')];
+        const targets = [100, 85, 60];
+        const result = document.getElementById('heroResult');
+        const qText = document.getElementById('heroQText');
+
+        // reset
+        fills.forEach(f => f.style.width = '0%');
+        pcts.forEach(p => p.textContent = '0%');
+        result.style.opacity = '0';
+
+        await new Promise(r => setTimeout(r, 400));
+
+        for (let i = 0; i < fills.length; i++) {
+            fills[i].style.width = targets[i] + '%';
+            pcts[i].textContent = targets[i] + '%';
+            await new Promise(r => setTimeout(r, 700));
+        }
+
+        await typeText(qText, heroQuestions[heroIndex]);
+        result.style.opacity = '1';
+
+        heroIndex = (heroIndex + 1) % heroQuestions.length;
+
+        setTimeout(() => {
+            heroPlaying = false;
+            if (heroVisible) playHeroDemo();
+        }, 3000);
+    }
+
+    const heroCardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            heroVisible = entry.isIntersecting;
+            if (entry.isIntersecting) {
+                playHeroDemo();
+            }
+        });
+    }, { threshold: 0.4 });
+
+    const heroCardEl = document.querySelector('.hero-card');
+    if (heroCardEl) heroCardObserver.observe(heroCardEl);
+
+    // ---- Question Generator Auto-Cycle ----
+    let autoGenInterval = null;
+
+    function startAutoGen() {
+        if (autoGenInterval) return;
+        autoGenInterval = setInterval(() => {
+            genBtn.click();
+        }, 4000);
+    }
+
+    function stopAutoGen() {
+        clearInterval(autoGenInterval);
+        autoGenInterval = null;
+    }
+
+    const demoGridEl = document.querySelector('.demo-grid');
+    const demoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) startAutoGen();
+            else stopAutoGen();
+        });
+    }, { threshold: 0.3 });
+
+    if (demoGridEl) {
+        demoObserver.observe(demoGridEl);
+        demoGridEl.addEventListener('mouseenter', stopAutoGen);
+        demoGridEl.addEventListener('mouseleave', () => {
+            const rect = demoGridEl.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            if (isVisible) startAutoGen();
+        });
+    }
+
+    // ---- Animated Counters ----
+    function animateCounter(el) {
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const isDecimal = el.dataset.decimal === 'true';
+        const duration = 1400;
+        const start = performance.now();
+
+        function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const value = target * eased;
+            el.textContent = (isDecimal ? value.toFixed(1) : Math.floor(value).toLocaleString()) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    const counterEls = document.querySelectorAll('[data-count]');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target); // only run once
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counterEls.forEach(el => counterObserver.observe(el));
+
+    // ---- Spotlight Glow Border on Feature Cards ----
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // ---- Staggered "Stack Forward" Reveal for How It Works Steps ----
+    const stepEls = document.querySelectorAll('.step');
+    const stepsRowEl = document.querySelector('.steps-row');
+
+    const stepsRowObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                stepEls.forEach((step, i) => {
+                    setTimeout(() => {
+                        step.classList.add('stack-in');
+                    }, i * 150);
+                });
+            } else {
+                stepEls.forEach(step => step.classList.remove('stack-in'));
+            }
+        });
+    }, { threshold: 0.2 });
+
+    if (stepsRowEl) stepsRowObserver.observe(stepsRowEl);
 </script>
 </body>
 </html>
